@@ -32,29 +32,31 @@ $routes->get('logout', 'LoginController::logout');
 $routes->get('registrasi', 'RegistrasiController::index');
 $routes->post('registrasi', 'RegistrasiController::store');
 
-// // Routes khusus untuk admin
-// $routes->group('admin', ['filter' => 'role:admin'], function ($routes) {
-//     $routes->get('dashboard', 'AdminController::dashboard');
-//     $routes->get('produk', 'ProdukController::index');
-//     $routes->get('produk/create', 'ProdukController::create');
-//     $routes->post('produk/store', 'ProdukController::store');
-//     $routes->get('produk/edit/(:num)', 'ProdukController::edit/$1');
-//     $routes->post('produk/update/(:num)', 'ProdukController::update/$1');
-//     $routes->get('sertifikat', 'SertifikatController::index');
-//     $routes->get('sertifikat/create', 'SertifikatController::create');
-//     $routes->post('sertifikat/store', 'SertifikatController::store');
-//     $routes->get('sertifikat/edit/(:num)', 'SertifikatController::edit/$1');
-//     $routes->post('sertifikat/update/(:num)', 'SertifikatController::update/$1');
-// });
+// Routes khusus untuk admin
+$routes->group('admin', ['filter' => 'role:admin'], function ($routes) {
+    $routes->get('dashboard', 'AdminController::dashboard');
+    $routes->get('member/detail', 'AdminController::detail');
+    $routes->get('member/verifikasi', 'AdminController::verifikasi');
+    $routes->get('produk', 'ProdukController::index');
+    $routes->get('produk/create', 'ProdukController::create');
+    $routes->post('produk/store', 'ProdukController::store');
+    $routes->get('produk/edit/(:num)', 'ProdukController::edit/$1');
+    $routes->post('produk/update/(:num)', 'ProdukController::update/$1');
+    $routes->get('sertifikat', 'SertifikatController::index');
+    $routes->get('sertifikat/create', 'SertifikatController::create');
+    $routes->post('sertifikat/store', 'SertifikatController::store');
+    $routes->get('sertifikat/edit/(:num)', 'SertifikatController::edit/$1');
+    $routes->post('sertifikat/update/(:num)', 'SertifikatController::update/$1');
+});
 
-// // Routes khusus untuk user
-// $routes->group('user', ['filter' => 'role:user'], function ($routes) {
-//     $routes->get('dashboard', 'UserController::dashboard');
-//     $routes->get('pameran', 'PameranController::index');
-//     $routes->get('ekspor', 'EksporController::index');
-//     $routes->get('ekspor/create', 'EksporController::create');
-//     $routes->post('ekspor/store', 'EksporController::store');
-// });
+// Routes khusus untuk user
+$routes->group('user', ['filter' => 'role:user'], function ($routes) {
+    $routes->get('dashboard', 'UserController::dashboard');
+    $routes->get('pameran', 'PameranController::index');
+    $routes->get('ekspor', 'EksporController::index');
+    $routes->get('ekspor/create', 'EksporController::create');
+    $routes->post('ekspor/store', 'EksporController::store');
+});
 
 
 // Route Produk
