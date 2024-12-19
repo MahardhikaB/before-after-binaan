@@ -101,6 +101,15 @@ class ProgressModel extends Model
                     ->findAll();
     }
 
+    public function getProgressByUserId($userId)
+{
+    return $this->join('perusahaan', 'perusahaan.id_perusahaan = progress.id_perusahaan')
+                ->where('perusahaan.user_id_perusahaan', $userId)
+                ->select('progress.*, perusahaan.nama_perusahaan')
+                ->findAll();
+}
+
+
     public function getProgress($id = false){
         if($id == false){
             return $this->findAll();

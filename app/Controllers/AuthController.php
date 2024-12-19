@@ -65,7 +65,7 @@ class AuthController extends Controller
         session()->set('success', 'Berhasil login! Selamat datang, ' . $user['nama_user'] . '.');
     
         // Redirect berdasarkan role
-        return redirect()->to($user['role'] === 'admin' ? '/admin/dashboard' : '/user/dashboard');
+        return redirect()->to($user['role'] === 'admin' ? '/admin/dashboard' : '/user/dashboard')->with('success', 'Anda telah Berhasil Login');
     }
 
     public function register()
@@ -160,7 +160,7 @@ class AuthController extends Controller
 }
 
     
-    // Logout
+    // Logout                                                           
     public function logout()
     {
         session()->destroy();

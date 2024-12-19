@@ -7,9 +7,12 @@ Dashboard Perusahaan
 <?= $this->section('head') ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link rel="stylesheet" href="/css/dashboard_user.css">
+<link rel="stylesheet" href="<?= base_url('css/notifikasi.css') ?>">
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
+<?= $this->include('layout/notifikasi'); ?>
+<div class="pat">
 <div class="hero-section">
     <div class="hero-text">
         <h1>Dashboard Perusahaan</h1>
@@ -31,5 +34,5 @@ Dashboard Perusahaan
         <p>Tanggal Selesai : ~sekarang</p>
     </div>
 </div>
-
+</div>
 <?= $this->endSection() ?>

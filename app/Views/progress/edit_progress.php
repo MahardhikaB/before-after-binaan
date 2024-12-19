@@ -12,9 +12,49 @@ Edit Pencapaian Ekspor
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
 <script>
+
 $(function() {
     $("#tanggal_ekspor").datepicker({
-        dateFormat: 'dd/mm/yy'
+        dateFormat: 'dd/mm/yy',
+        maxDate: "+0D"
+    });
+});
+
+$(document).ready(function() {
+    // Input mask untuk "Nilai Ekspor (Rp)"
+    $('#nilai_ekspor_rp').on('input', function() {
+        var value = $(this).val();
+        // Hapus karakter non-angka, dan pastikan simbol "Rp" muncul di depan
+        value = value.replace(/[^0-9]/g, '');
+        if (value) {
+            $(this).val('Rp ' + value);
+        } else {
+            $(this).val('');
+        }
+    });
+
+    // Input mask untuk "Nilai Ekspor (USD)"
+    $('#nilai_ekspor_usd').on('input', function() {
+        var value = $(this).val();
+        // Hapus karakter non-angka, dan pastikan simbol "$" muncul di depan
+        value = value.replace(/[^0-9]/g, '');
+        if (value) {
+            $(this).val('$ ' + value);
+        } else {
+            $(this).val('');
+        }
+    });
+
+    // Input mask untuk "Kuantitas Ekspor"
+    $('#kuantitas_ekspor').on('input', function() {
+        var value = $(this).val();
+        // Hapus karakter non-angka, dan pastikan simbol "kg" muncul di belakang
+        value = value.replace(/[^0-9]/g, '');
+        if (value) {
+            $(this).val(value + ' kg');
+        } else {
+            $(this).val('');
+        }
     });
 });
 </script>
@@ -107,24 +147,26 @@ input[type=number] {
             <div class="col-md px-5">
                 <div class="input-form mb-3">
                     <label class="form-label" for="nilai_ekspor_rp">Nilai Ekspor (Rp)</label>
-                    <input class="form-control border border-dark border-2" type="number" id="nilai_ekspor_rp"
-                        name="nilai_ekspor_rp" value="<?= $progress['nilai_ekspor_rp'] ?>">
+                    <input class="form-control border border-dark border-2" type="text" id="nilai_ekspor_rp"
+                        name="nilai_ekspor_rp" value="<?= number_format($progress['nilai_ekspor_rp'], 0, ',', '.') ?>">
                 </div>
                 <div class="input-form mb-3">
                     <label class="form-label" for="nilai_ekspor_usd">Nilai Ekspor (USD)</label>
-                    <input class="form-control border border-dark border-2" type="number" id="nilai_ekspor_usd"
-                        name="nilai_ekspor_usd" value="<?= $progress['nilai_ekspor_usd'] ?>">
+                    <input class="form-control border border-dark border-2" type="text" id="nilai_ekspor_usd"
+                        name="nilai_ekspor_usd" value="<?= number_format($progress['nilai_ekspor_usd'], 0, ',', '.') ?>">
                 </div>
                 <div class="input-form mb-3">
                     <label class="form-label" for="kuantitas_ekspor">Kuantitas Ekspor</label>
                     <input class="form-control border border-dark border-2" type="text" id="kuantitas_ekspor"
-                        name="kuantitas" value="<?= $progress['kuantitas_ekspor'] ?>">
+                        name="kuantitas" value="<?= number_format($progress['kuantitas_ekspor'], 0, ',', '.') ?> kg">
                 </div>
                 <div class="mb-3 flex flex-column">
                     <p class="form-label" for="bukti_ekspor">Bukti Ekspor</p>
-                    <!-- <input readonly class="form-control border border-dark border-2" type="text" id="bukti_ekspor"
-                        name="bukti"> -->
-                    <img src="/bukti_ekspor/<?= $progress['bukti_ekspor'] ?>" id="img_bukti" alt="Bukti Ekspor">
+                    <?php
+                        $filePath = '/bukti_ekspor/' . $progress['bukti_ekspor'];
+                        $fileName = pathinfo($progress['bukti_ekspor'], PATHINFO_FILENAME); // Ambil nama file tanpa ekstensi
+                    ?>
+                    <a href="<?= $filePath ?>" class="btn btn-link" download><?= $fileName ?>.pdf</a>
                     <input aria-describedby="file_input_help" type="file"
                         class="form-control border border-dark border-2 mt-2" id="bukti_ekspor" name="bukti_ekspor">
                     <p class="mt-1 text-danger">

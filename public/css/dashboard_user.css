@@ -59,6 +59,9 @@
     background-color: #3b3131;
 }
 
+.pat {
+    padding-bottom: 70px;
+}
 /* Styling untuk Contact Details dan Address Details */
 .company-information {
     display: flex;
@@ -82,11 +85,13 @@
     padding: 10px;
     flex: 1; /* Membuat kolom fleksibel */
     white-space: normal; /* Agar teks dapat membungkus */
+    
 }
 
 .user-details {
     position: relative;
     padding-right: 30px;
+    
 }
 
 .user-details::after {
@@ -111,6 +116,7 @@
 /* Profile content padding */
 .content-profile {
     padding: 20px;
+    
 }
 
 .search-bar-container {

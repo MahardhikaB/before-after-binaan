@@ -82,11 +82,13 @@ Detail Pencapaian Ekspor
                         name="kuantitas" value="<?= $progress['kuantitas_ekspor'] ?>" readonly>
                 </div>
                 <div class="mb-3 flex flex-column">
-                    <p class="form-label" for="bukti_ekspor">Bukti Ekspor</p>
-                    <!-- <input readonly class="form-control border border-dark border-2" type="text" id="bukti_ekspor"
-                        name="bukti"> -->
-                    <img src="/bukti_ekspor/<?= $progress['bukti_ekspor'] ?>" id="img_bukti" alt="Bukti Ekspor">
-                </div>
+    <p class="form-label" for="bukti_ekspor">Bukti Ekspor</p>
+    <?php
+        $filePath = '/bukti_ekspor/' . $progress['bukti_ekspor'];
+        $fileName = pathinfo($progress['bukti_ekspor'], PATHINFO_FILENAME); // Ambil nama file tanpa ekstensi
+    ?>
+    <a href="<?= $filePath ?>" class="btn btn-link" download><?= $fileName ?>.pdf</a>
+</div>
             </div>
             <div class="input-form mb-3-button d-flex justify-content-center mt-5 mb-3">
                 <a class="btn btn-primary w-25" href="/user/progress">Kembali</a>
